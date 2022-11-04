@@ -6,7 +6,7 @@ app.use(cors())
 app.use(express.json())
 
 const login = [];
-const tweets = [];
+let tweets = [];
 
 app.post("/sign-up", (req, res) => {
     const { username, avatar } = req.body;
@@ -19,7 +19,7 @@ app.post("/sign-up", (req, res) => {
         username,
         avatar
     }
-
+    
     login.push(user)
     res.send(user)
 })
@@ -38,19 +38,16 @@ app.post("/tweets", (req, res) => {
 
     tweets.push(tweetUser)
     res.send(tweets)
+    for(let i = 0; i < tweets.length; i++) {
+        tweets[i].avatar = login[0].avatar
+    }
 })
 
 app.get("/tweets", (req, res) => {
-    const teste = [
-        {
-            username: tweets.username,
-            avatar: login.avatar,
-            tweet: tweets.tweet
-        }
-    ]
 
-    res.send(teste)
-
+    console.log(tweets)
+    res.send(tweets)
 })
+
 
 app.listen(5000, () => console.log("Server running at port: 5000"))
