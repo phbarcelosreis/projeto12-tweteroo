@@ -9,9 +9,9 @@ const login = [];
 const tweets = [];
 
 app.post("/sign-up", (req, res) => {
-    const {username, avatar} = req.body;
+    const { username, avatar } = req.body;
 
-    if(!username || !avatar){
+    if (!username || !avatar) {
         return res.status(400);
     }
 
@@ -24,9 +24,32 @@ app.post("/sign-up", (req, res) => {
     res.send(user)
 })
 
-app.get("/sign-up", (req, res) => {
+app.post("/tweets", (req, res) => {
+    const { username, tweet } = req.body;
 
-    res.send(login)
+    if (!username || !tweet) {
+        return res.status(400);
+    }
+
+    const tweetUser = {
+        username,
+        tweet
+    }
+
+    tweets.push(tweetUser)
+    res.send(tweets)
+})
+
+app.get("/tweets", (req, res) => {
+    const teste = [
+        {
+            username: tweets.username,
+            avatar: login.avatar,
+            tweet: tweets.tweet
+        }
+    ]
+
+    res.send(teste)
 
 })
 
