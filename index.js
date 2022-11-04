@@ -7,9 +7,11 @@ app.use(express.json())
 
 const login = [];
 let tweets = [];
+let avatar;
 
 app.post("/sign-up", (req, res) => {
-    const { username, avatar } = req.body;
+    const { username } = req.body;
+    avatar = req.body.avatar
 
     if (!username || !avatar) {
         return res.status(400);
@@ -33,19 +35,17 @@ app.post("/tweets", (req, res) => {
 
     const tweetUser = {
         username,
-        tweet
+        tweet,
+        avatar
     }
 
     tweets.push(tweetUser)
     res.send(tweets)
-    for(let i = 0; i < tweets.length; i++) {
-        tweets[i].avatar = login[0].avatar
-    }
+
 })
 
 app.get("/tweets", (req, res) => {
 
-    console.log(tweets)
     res.send(tweets)
 })
 
