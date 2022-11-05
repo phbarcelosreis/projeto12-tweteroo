@@ -45,6 +45,10 @@ app.post("/tweets", (req, res) => {
 })
 
 app.get("/tweets", (req, res) => {
+    
+    if(tweets.length === 11){
+        tweets.shift();
+    }
 
     res.send(tweets)
 })
