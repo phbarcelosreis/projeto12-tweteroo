@@ -23,7 +23,8 @@ app.post("/sign-up", (req, res) => {
     }
     
     login.push(user)
-    res.send(user)
+    res.send("OK")
+    
 })
 
 app.post("/tweets", (req, res) => {
@@ -41,7 +42,7 @@ app.post("/tweets", (req, res) => {
 
     tweets.push(tweetUser)
     res.send(tweets)
-
+    
 })
 
 app.get("/tweets", (req, res) => {
